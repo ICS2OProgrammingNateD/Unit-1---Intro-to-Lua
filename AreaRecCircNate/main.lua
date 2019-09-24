@@ -11,11 +11,13 @@ local myRectangle
 local widthOfRectangle = 350
 local heightOfRectangle = 200
 local areaOfRectangle
+
 local myCircle
 local areaTextCircle
 local areaOfCircle
 local radiusOfCircle = 150
 local PI = 3.1415926
+
 --sets the backround colour of my screen.
 display.setDefault("background", 123/255, 122/255, 121/255)
 
@@ -28,7 +30,7 @@ myRectangle = display.newRect(0, 0, widthOfRectangle, heightOfRectangle)
 -- anchor the rectangle in the top left corner of the screen and set its (x,y) position
 myRectangle.anchorX = 0
 myRectangle.anchorY = 0
-myRectangle.x = 20
+myRectangle.x = display.contentHeight/2
 myRectangle.y = 10
 -- set the width of the border
 myRectangle.strokeWidth = 20
@@ -51,7 +53,7 @@ areaText = display.newText("The area of this rectangle witha width of \n"..
 areaText.anchorX = 0
 areaText.anchorY = 0
 areaText.x = 20
-areaText.y = display.contentHeight/2
+areaText.y = 240
 
 --set the colour of the newText
 areaText:setTextColor(240/255, 240/255, 240/255)
@@ -67,5 +69,21 @@ areaTextCircle = display.newText("The area of this circle with a radius of \n" .
 	radiusOfCircle .. " is " .. areaOfCircle .. 
      "pixels².", 0, 0, Arial, textSize)
 
--- 
+-- anchor circle
+myCircle.anchorX = 0
+myCircle.anchorY = 0
+myCircle.x = 300
+myCircle.y = 350
 
+
+-- anchor text position
+areaTextCircle.anchorX = 0
+areaTextCircle.anchorY = 0
+areaTextCircle.x = 40
+areaTextCircle.y = 650
+
+-- set the width of the border
+myCircle.strokeWidth = 20
+
+-- set the colour of the border
+myCircle:setStrokeColor(0/255, 0/255, 0/255)
