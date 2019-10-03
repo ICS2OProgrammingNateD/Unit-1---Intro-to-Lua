@@ -11,8 +11,8 @@ display.setDefault ("background", 204/255, 128/255, 0/255)
 display.setStatusBar(display.HiddenStatusBar)
 
 -- create variable for sound
-local Sound1 = loadSound("Sounds/Correct Answer Sound Effect.mp3")
-
+local Sound1 = audio.loadSound("Sounds/Correct Answer Sound Effect.mp3")
+local Sound2 = audio.loadSound("Sounds/Wrong Buzzer Sound Effect.mp3")
 
 -- create blue button, set its position and make it visible
 local blueButton = display.newImageRect("Images/Fast Button Inactive@2x.png", 198, 96)
@@ -32,6 +32,10 @@ textObject.x = display.contentWidth/2
 textObject.y = display.contentHeight/3
 textObject:setTextColor (1, 1, 0)
 textObject.isVisible = false
+local checkmark = display.newImageRect("Images/checkmark.png", 150, 150)
+checkmark.x = 512
+checkmark.y = 650
+checkmark.isVisible = false
 
 -- Function: BlueButtonListener
 -- Input: touch listener
@@ -44,12 +48,14 @@ local function BlueButtonListener(touch)
 		redButton.isVisible = true
 		textObject.isVisible = true
 		audio.play(Sound1)
+        checkmark.isVisible = true
 	end
 
 	if (touch.phase == "ended") then
 		blueButton.isVisible = true
 		redButton.isVisible = false
 		textObject.isVisible = false
+		checkmark.isVisible = false
     end
 end
 
@@ -61,12 +67,15 @@ local function RedButtonListener2(touch)
 		blueButton.isVisible = false
 		redButton.isVisible = true
 		textObject.isVisible = true
+		checkmark.isVisible = true
+		audio.play(Sound2)
 	end
 
 	if (touch.phase == "ended") then
 		blueButton.isVisible = true
 		redButton.isVisible = false
 		textObject.isVisible = false
+		checkmark.isVisible = false
     end
 end
 
