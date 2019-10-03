@@ -10,6 +10,10 @@ display.setDefault ("background", 204/255, 128/255, 0/255)
 -- hide status bar
 display.setStatusBar(display.HiddenStatusBar)
 
+-- create variable for sound
+local Sound1 = loadSound("Sounds/Correct Answer Sound Effect.mp3")
+
+
 -- create blue button, set its position and make it visible
 local blueButton = display.newImageRect("Images/Fast Button Inactive@2x.png", 198, 96)
 blueButton.x = display.contentWidth/2
@@ -39,6 +43,7 @@ local function BlueButtonListener(touch)
 		blueButton.isVisible = false
 		redButton.isVisible = true
 		textObject.isVisible = true
+		audio.play(Sound1)
 	end
 
 	if (touch.phase == "ended") then
@@ -69,3 +74,4 @@ end
 
 -- add the respective listeners to each object
 redButton:addEventListener("touch", RedButtonListener2)
+
