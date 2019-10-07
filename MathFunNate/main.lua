@@ -21,21 +21,25 @@ display.setDefault("background", 0/255, 135/255, 139/255)
 -- create local variables
 local questionObject
 local correctObject
+
 local numericField
 local randomNumber1
 local randomNumber2
 local userAnswer
 local correctAnswer = 0
 local incorrectObject
+
 local points = 0
 local pointsText
 local correctAnswerObject
 local lives = 3
 local livesText
+
 local gameOverText
 local youWinText
-local RandomOperator
+local randomOperator
 local correctAnswer1
+local tempRandomNumber
 
 
 
@@ -47,7 +51,7 @@ local correctAnswer1
 local function AskQuestion()
 	-- generate a random number between 1 & 2
 
-	RandomOperator = math.random(1,4)
+	randomOperator = math.random(1, 4)
 
 	randomNumber1 = math.random(2, 12)
 	randomNumber2 = math.random(2, 12)
@@ -61,10 +65,19 @@ local function AskQuestion()
 		-- create the question in text object
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 
-	-- otherwise, if the random operator is 2, do subtraction
-	elseif (randomOperator == 2) then
-		-- calculate the correct answer
+	    -- otherwise, if the random operator is 2, do subtraction
+	    elseif (randomOperator == 2) then
+		
+		-- if randomNumber1 is smaller than randomNumber2 then swap them
+	    if(randomNumber1 < randomNumber2) then
+			tempRandomNumber = randomNumber1
+			randomNumber1 = randomNumber2
+			randomNumber2 = tempRandomNumber
+		end
+
+        -- calculate the correct answer
 		correctAnswer = randomNumber1 - randomNumber2
+
 
 		-- create the question in text object 
 		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
@@ -79,12 +92,8 @@ local function AskQuestion()
 		
 	-- otherwise, if random operator is 4 then do division
 	elseif (randomOperator == 4) then
-		--calculate the correct answer
-		correctAnswer = randomNumber1 / randomNumber2
-
-		-- show division problem
-		correctAnswer1 = randomNumber1 * randomNumber2 
-		correctAnswer = correctAnswer1 / randomNumber1	
+	
+		
 	end
 end
 
