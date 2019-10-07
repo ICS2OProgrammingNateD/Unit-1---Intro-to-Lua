@@ -68,6 +68,7 @@ local function AskQuestion()
 
 		-- create the question in text object 
 		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+
 	-- if random operator is 3 then do multiplication
 	elseif (randomOperator == 3) then
 		-- calculate the correct answer
@@ -75,6 +76,7 @@ local function AskQuestion()
 
 		-- create the question in text object 
 		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = " 
+		
 	-- otherwise, if random operator is 4 then do division
 	elseif (randomOperator == 4) then
 		--calculate the correct answer
