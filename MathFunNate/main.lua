@@ -1,7 +1,8 @@
--- Title: NumericTextFields
+-- Title: Math Fun
 -- Name: Nate Day
 -- Course: ICS2O
--- This program creates a random question generator (using addition).
+-- This program creates a random question generator 
+--(using addition, subtraction, multiplication, and division).
 
 
 -- hide the status bar
@@ -33,7 +34,8 @@ local lives = 3
 local livesText
 local gameOverText
 local youWinText
-
+local RandomOperator
+local correctAnswer1
 
 
 
@@ -43,13 +45,45 @@ local youWinText
 
 
 local function AskQuestion()
-	-- generates 2 random numbers between a lowest and highest number
-	randomNumber1 = math.random(0, 10)
-	randomNumber2 = math.random(0, 10)
+	-- generate a random number between 1 & 2
 
-	questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+	RandomOperator = math.random(1,4)
 
-	correctAnswer = randomNumber1 + randomNumber2
+	randomNumber1 = math.random(2, 12)
+	randomNumber2 = math.random(2, 12)
+
+	-- If the Random operator is 1, then do addition
+	if (randomOperator == 1) then
+
+		-- calculate the correct answer
+		correctAnswer = randomNumber1 + randomNumber2
+
+		-- create the question in text object
+		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+
+	-- otherwise, if the random operator is 2, do subtraction
+	elseif (randomOperator == 2) then
+		-- calculate the correct answer
+		correctAnswer = randomNumber1 - randomNumber2
+
+		-- create the question in text object 
+		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+	-- if random operator is 3 then do multiplication
+	elseif (randomOperator == 3) then
+		-- calculate the correct answer
+		correctAnswer = randomNumber1 * randomNumber2
+
+		-- create the question in text object 
+		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = " 
+	-- otherwise, if random operator is 4 then do division
+	elseif (randomOperator == 4) then
+		--calculate the correct answer
+		correctAnswer = randomNumber1 / randomNumber2
+
+		-- show division problem
+		correctAnswer1 = randomNumber1 * randomNumber2 
+		correctAnswer = correctAnswer1 / randomNumber1	
+	end
 end
 
 local function HideCorrect()
@@ -161,8 +195,6 @@ livesText = display.newText("Lives = " .. lives, 150, 100, nil, 50)
 AskQuestion()
 
 
-	   
-  -- Day 17 added code
 
 
  
