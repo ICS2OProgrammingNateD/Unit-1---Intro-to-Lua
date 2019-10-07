@@ -10,6 +10,7 @@ display.setStatusBar(display.HiddenStatusBar)
 -- sets the background colour
 display.setDefault("background", 0/255, 135/255, 139/255)
 
+--display.setTextColor("Game Over", .8, 0, 0)
 
 ---------------------------------------------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -30,6 +31,9 @@ local pointsText
 local correctAnswerObject
 local lives = 3
 local livesText
+local gameOverText
+local youWinText
+
 
 
 
@@ -81,6 +85,8 @@ local function NumericFieldListener( event )
 	       points = points + 1
            -- upadate it in the display object
 		   pointsText.text = "Points = " .. points
+		   -- clear text 
+		   event.target.text = ""
 		   
 		else
 			incorrectObject.isVisible = true
@@ -88,18 +94,34 @@ local function NumericFieldListener( event )
 		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, nil, 50)
 		   	correctAnswerObject.isVisible = true
 		   	-- take a life if user gets the incorrect answer
-	       lives = lives - 1
-           -- upadate it in the display object
-		   livesText.text = "Lives = " .. lives
-		end
-		    -- clear text 
-		    event.target.text = ""
-		
-		
+	        lives = lives - 1
+            -- upadate it in the display object
+		    livesText.text = "Lives = " .. lives
+		end   
+
+		    -- if points reach 5 points display You Win!
+	    if  
+	    	(points >= 5)  then
+			youWinText = display.newText( "You Win!", 512, 200, native.systemFontBold, 180)
+			youWinText:setTextColor( 0, 1, 0)
+			youWinText.isVisible = true
+		end 
+
+		if    -- If lives = less or equal to zero display Game Over!
+		    (lives <= 0) then
+			gameOverText = display.newText( "Game Over!", 512, 200, native.systemFontBold, 180)
+			gameOverText:setTextColor(.8, 0, 0)
+			gameOverText.isVisible = true
+		end   
+			-- clear text 
+		    event.target.text = ""   
 	end
 end
+		
+	
 
-      
+
+
 
 -------------------------------------------------------------------------------------------------------------
 -- OBJECT CREATION
