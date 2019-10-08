@@ -9,9 +9,9 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- sets the background colour
-display.setDefault("background", 0/255, 135/255, 139/255)
-
---display.setTextColor("Game Over", .8, 0, 0)
+backgroundImage = display.newImageRect("Images/background.jpg", 1304, 769)
+backgroundImage.x = display.contentCenterX
+backgroundImage.y = display.contentCenterY
 
 ---------------------------------------------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -19,6 +19,9 @@ display.setDefault("background", 0/255, 135/255, 139/255)
 
 
 -- create local variables
+local backgroundImage
+local youWin
+local gameOver
 local questionObject
 local correctObject
 
@@ -53,8 +56,8 @@ local function AskQuestion()
 
 	randomOperator = math.random(1, 4)
 
-	randomNumber1 = math.random(2, 12)
-	randomNumber2 = math.random(2, 12)
+	randomNumber1 = math.random(0, 10)
+	randomNumber2 = math.random(0, 10)
 
 	-- If the Random operator is 1, then do addition
 	if (randomOperator == 1) then
@@ -92,6 +95,9 @@ local function AskQuestion()
 		
 	-- otherwise, if random operator is 4 then do division
 	elseif (randomOperator == 4) then
+		correctAnswer1 = randomNumber1 * randomNumber2
+		correctAnswer = correctAnswer1 / randomNumber1
+		questionObject.text = correctAnswer1 .. " / " .. randomNumber1 .. " = "
 	
 		
 	end
@@ -136,7 +142,8 @@ local function NumericFieldListener( event )
 		else
 			incorrectObject.isVisible = true
 		    timer.performWithDelay(2000, Hideincorrect) 
-		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, nil, 50)
+		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
+		    correctAnswerObject:setTextColor(101/255, 14/255, 189/255 )
 		   	correctAnswerObject.isVisible = true
 		   	-- take a life if user gets the incorrect answer
 	        lives = lives - 1
@@ -147,16 +154,21 @@ local function NumericFieldListener( event )
 		    -- if points reach 5 points display You Win!
 	    if  
 	    	(points >= 5)  then
-			youWinText = display.newText( "You Win!", 512, 200, native.systemFontBold, 180)
-			youWinText:setTextColor( 0, 1, 0)
-			youWinText.isVisible = true
+			youWin = display.newImageRect("Images/youWin.jpg", 1304, 769)
+			youWin.x = display.contentCenterX
+			youWin.y = display.contentCenterY
+			numericField.isVisible = false
+
 		end 
 
 		if    -- If lives = less or equal to zero display Game Over!
 		    (lives <= 0) then
-			gameOverText = display.newText( "Game Over!", 512, 200, native.systemFontBold, 180)
-			gameOverText:setTextColor(.8, 0, 0)
-			gameOverText.isVisible = true
+			gameOver = display.newImageRect("Images/gameOver.jpg", 1304, 769)
+			gameOver.x = display.contentCenterX
+			gameOver.y = display.contentCenterY
+			numericField.isVisible = false
+
+
 		end   
 			-- clear text 
 		    event.target.text = ""   
@@ -173,10 +185,12 @@ end
 -------------------------------------------------------------------------------------------------------------
 
 -- display the amount of points as a text object
-pointsText = display.newText("Points = " .. points, 150, 50, nil, 50)
+pointsText = display.newText("Points = " .. points, 150, 50, native.systemFontBold, 50)
+pointsText:setTextColor(32/255, 225/255, 239/255)
+
 -- displays a question and sets the colour
-questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2, nil, 50)
-questionObject:setTextColor(.5, .3, .8)
+questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2, native.systemFontBold, 50)
+questionObject:setTextColor(.0, .0, .0)
 
 -- create the correct text object and make it invisible
 correctObject = display.newText( "Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
@@ -191,12 +205,14 @@ incorrectObject.isVisible = false
 -- create numeric field 
 numericField = native.newTextField(display.contentWidth/2, display.contentHeight/2, 150, 80)
 numericField.inputType = "number"
+numericField.isVisible = true
 
 -- add the event listener for the numeric field
 numericField:addEventListener( "userInput", NumericFieldListener )
 
 -- display the amount of lives as a text object
-livesText = display.newText("Lives = " .. lives, 150, 100, nil, 50)
+livesText = display.newText("Lives = " .. lives, 150, 100, native.systemFontBold, 50)
+livesText:setTextColor(32/255, 225/255, 239/255)
 
 ------------------------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
