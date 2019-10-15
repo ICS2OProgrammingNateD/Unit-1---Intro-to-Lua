@@ -6,6 +6,18 @@
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
+-- load sound
+audio.loadStream()
+
+-- add background music
+local backgroundMusic = audio.loadStream("Sounds/bensound-funnysong.mp3")
+audio.play(backgroundMusic, {loops = -1})
+
+
+
+
+
+
 -- global variables
 scrollSpeed = 3
 
@@ -37,7 +49,7 @@ end
 Runtime:addEventListener("enterFrame", MoveShip)
 
 -- make new image
-local rocketship = display.newImageRect("Images/rocketship", 200, 200)
+local rocketship = display.newImageRect("Images/rocketship.png", 200, 200)
  
 -- global variables
 scrollSpeed = 3
@@ -59,3 +71,7 @@ local function _MoveShip(event)
 -- change the transparency of the ship every time it moves so that it fades out
 	rocketship.alpha = rocketship.alpha + 0.01
 end
+
+-- Moveship will be called over and over again
+Runtime:addEventListener("enterFrame", _MoveShip)
+

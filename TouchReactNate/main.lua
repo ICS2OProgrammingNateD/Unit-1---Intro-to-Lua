@@ -3,6 +3,14 @@
 -- Course: ICS2O
 -- This program creates a image that when touched can react.
 
+-- load sound
+audio.loadSound()
+
+-- add background music
+local mouseClick = audio.loadStream("Sounds/Button Sounds.html")
+audio.play(mouseClick, {loops = -1})
+
+
 
 -- set background colour
 display.setDefault ("background", 204/255, 128/255, 0/255)

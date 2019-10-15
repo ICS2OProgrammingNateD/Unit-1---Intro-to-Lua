@@ -1,0 +1,167 @@
+#loading{
+	visibility:hidden;
+	padding-left:5px;
+}
+#ajax_response{
+	border : 1px solid #A2BFF0;
+	background : #FFFFFF;
+	position:absolute;
+	display:none;
+	padding:2px 2px;
+	top:auto;
+
+}
+#holder{
+	width : 350px;
+}
+.list {
+	padding:0px 0px;
+	margin:0px;
+	list-style : none;
+}
+.list li a{
+	text-align : left;
+	padding:2px;
+	cursor:pointer;
+	display:block;
+	text-decoration : none;
+	color:#6B6B6B;
+	font-weight:bold;
+}
+.selected{
+	background : #CCCFF2;
+}
+.bold{
+	color:#9F9F9F;
+
+}
+.about{
+	text-align:right;
+	font-size:10px;
+	margin : 10px 4px;
+	font-weight:bold;
+	
+}
+.about a{
+	color:#BCBCBC;
+	text-decoration : none;
+}
+.about a:hover{
+	color:#575757;
+	cursor : default;
+}
+.star-rating,
+.star-rating a:hover,
+.star-rating a:active,
+.star-rating .current-rating{
+	background: url(../images/rating_star.gif) left -1000px repeat-x;
+}
+
+.star-rating{
+	position:relative;
+	width:125px; /* (Width of each individual star)*(Number of stars) */
+	height:25px; /* Height of each individual star */
+	overflow:hidden;
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-position: left top;
+}
+.star-rating li{
+	display: inline;
+}
+.star-rating a, 
+.star-rating .current-rating{
+	position:absolute;
+	top:0;
+	left:0;
+	text-indent:-1000em;
+	height:25px; /* Height of each individual star */
+	line-height:25px; /* Height of each individual star */
+	outline:none;
+	overflow:hidden;
+	border: none;
+}
+.star-rating a:hover{
+	background-position: left bottom;
+}
+.star-rating .current-rating{
+	z-index:1;
+	background-position: left center;
+}	
+
+/* SECOND STAR (ALREADY VOTED) */
+
+
+.star-rating_disabled,
+.star-rating_disabled a:active,
+.star-rating_disabled .current-rating{
+	background: url(../images/rating_star_2.gif) left -1000px repeat-x;
+}
+.star-rating_disabled{
+	position:relative;
+	width:125px; /* (Width of each individual star)*(Number of stars) */
+	height:25px; /* Height of each individual star */
+	overflow:hidden;
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-position: left top;
+}
+.star-rating_disabled li{
+	display: inline;
+}
+.star-rating_disabled a, 
+.star-rating_disabled .current-rating {
+	position:absolute;
+	top:0;
+	left:0;
+	text-indent:-1000em;
+	height:25px; /* Height of each individual star */
+	line-height:25px; /* Height of each individual star */
+	outline:none;
+	overflow:hidden;
+	border: none;
+	cursor:default; /* So that when the cursor goes over the link it remains the same*/
+}
+.star-rating_disabled .current-rating{
+	z-index:1;
+	background-position: left center;
+}
+
+
+/* END SECOND STAR */
+
+.voted {
+	padding:5px 5px 5px 16px;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#333;
+	width:130px;
+	font-size:11px;
+	}
+/* The text that displays the rating information */
+.rated_text {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin-bottom:5px;
+	color:#666;
+	}
+/* Text that shows the rating */
+.ratio_class {
+	color:#00CC00;
+	font-weight:bold;
+	}
+/* Text that shows the number of rates */
+.votes_class {
+
+	}
+/* Text that tells the users if they have already voted*/
+.rated_twice{
+	color:#EE0000;
+	padding:5px 5px 5px 16px;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	width:130px;
+	font-size:11px;
+}
