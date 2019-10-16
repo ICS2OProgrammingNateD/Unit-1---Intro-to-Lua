@@ -1,6 +1,6 @@
 -- Title: MovingImages
 -- Name: Nate Day
--- Course: ICS2O/3C
+-- Course: ICS2O
 -- This program displays an image that moves across the screen.
 
 -- hide the status bar

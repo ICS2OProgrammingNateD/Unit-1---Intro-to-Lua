@@ -7,8 +7,21 @@
 audio.loadSound()
 
 -- add background music
-local mouseClick = audio.loadStream("Sounds/Button Sounds.html")
-audio.play(mouseClick, {loops = -1})
+local mouseClick = audio.loadSound("Sounds/Button Sounds.wav")
+
+
+local function click( touch )
+	if (touch.phase == "began") then
+		audio.play(mouseClick)
+	end
+end
+
+Runtime:addEventListener("touch", click)
+
+
+
+
+
 
 
 
