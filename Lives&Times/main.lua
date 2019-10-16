@@ -1,10 +1,8 @@
--- Title: Math Fun
+-- Title: LivesAndTimers
 -- Name: Nate Day
 -- Course: ICS2O
--- This program creates a random question generator 
---(using addition, subtraction, multiplication, and division).
+-- This program is a updated version of Math Fun that displays hearts and a countdown timer
 
--- added code for day 19
 
 
 -- create variable for sound
@@ -31,6 +29,7 @@ backgroundImage.y = display.contentCenterY
 
 
 -- create local variables
+
 local backgroundImage
 local youWin
 local gameOver
@@ -56,12 +55,50 @@ local randomOperator
 local correctAnswer1
 local tempRandomNumber
 
+local totalSeconds = 10
+local secondsLeft = 10
+local clockText
+local countdownTimer
+
+local lives = 3
+local heart1
+local heart2
+local heart3
+
 
 
 ---------------------------------------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 ---------------------------------------------------------------------------------------------------------------------------
 
+local function Updatetime()
+
+	-- decrement the number of seconds
+	secondsLeft = secondsLeft - 1
+
+	-- display the number of seconds left on the clock object
+	clockText.text = secondsLeft .. ""
+
+	if (secondsLeft == 0 ) then
+		-- reset the number of seconds left
+		secondsLeft = totalSeconds
+		lives = lives - 1
+
+		if (lives == 2 ) then
+			heart3.isVisible = false
+		elseif (lives == 1) then
+			heart2.isVisible = false
+		elseif (lives == 0) then
+			heart1.isVisible = false
+		end
+	end
+end
+
+--function call that calls the timer
+local function StartTimer()
+	-- create couuntdown timer that loops infinitely
+	countdownTimer = timer.performWithDelay( 1000, Updatetime, 0)
+end
 
 local function AskQuestion()
 	-- generate a random number between 1 & 2
@@ -197,6 +234,14 @@ end
 -------------------------------------------------------------------------------------------------------------
 -- OBJECT CREATION
 -------------------------------------------------------------------------------------------------------------
+
+
+-- create the hearts to display on the screen
+heart1 = display.newImageRect("Images/heart.png", 100, 100)
+heart1.x = display.contentWidth * 7 / 8
+heart1.y = display.contentHeight * 1 / 7
+
+
 
 -- display the amount of points as a text object
 pointsText = display.newText("Points = " .. points, 150, 50, native.systemFontBold, 50)
