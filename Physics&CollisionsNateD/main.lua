@@ -54,7 +54,7 @@ local function firstBall()
 	ball1 = display.newImage("Images/super_ball.png", 0, 0)
 
 	-- add to physics
-	physics.addBody(ball1, {density = 1.0, friction = 0.5, bounce = 0.5, radius = 25})
+	physics.addBody(ball1, {density = .7, friction = 0.5, bounce = 0.5, radius = 25})
 end
 
 
@@ -75,7 +75,7 @@ local function thirdBall()
 	ball3 = display.newImage("Images/super_ball.png", 1024, 0)
 
 	-- add to physics
-	physics.addBody(ball3, {density = 1.0, friction = 0.5, bounce = 0.5, radius = 75})
+	physics.addBody(ball3, {density = 1.3, friction = 0.5, bounce = 0.5, radius = 75})
 	ball3:scale( 3, 3)
 end
 
@@ -85,7 +85,7 @@ local function fourthBall()
 	ball4 = display.newImage("Images/super_ball.png", 1024, 0)
 
 	-- add to physics
-	physics.addBody(ball4, {density = 1.0, friction = 0.5, bounce = 0.5, radius = 12.5})
+	physics.addBody(ball4, {density = 0.5, friction = 0.5, bounce = 0.5, radius = 12.5})
 	ball4:scale( 0.5, 0.5)
 end
 
