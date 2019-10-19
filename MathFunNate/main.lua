@@ -20,7 +20,7 @@ local Sound2 = audio.loadSound("Sounds/Wrong Buzzer Sound Effect.mp3")
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
--- sets the background colour
+-- sets the background Image
 backgroundImage = display.newImageRect("Images/background.jpg", 1304, 769)
 backgroundImage.x = display.contentCenterX
 backgroundImage.y = display.contentCenterY
