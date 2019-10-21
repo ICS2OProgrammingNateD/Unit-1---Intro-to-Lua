@@ -19,7 +19,7 @@ backgroundMusic = audio.loadStream("Sounds/bkgMusic.mp3")
 audio.play(backgroundMusic, {loops = -1})
 
 -- add background image and display location
-backgroundImage = display.newImageRect("Images/background.jpg", 1024, 768)
+backgroundImage = display.newImageRect("Images/background.jpg", 1024, 769)
 backgroundImage.x = display.contentCenterX
 backgroundImage.y = display.contentCenterY
 
@@ -124,8 +124,6 @@ moleImage = display.newImageRect("Images/mole.png", 200, 150)
 -- setting position
 moleImage.x = display.contentCenterX
 moleImage.y = display.contentCenterY
-
--- set mole size to be one third of its orginal size
 
 
 -- make mole image invisible

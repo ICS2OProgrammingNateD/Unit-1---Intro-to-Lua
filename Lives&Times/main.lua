@@ -30,11 +30,9 @@ backgroundImage.y = display.contentCenterY
 
 -- create local variables
 
-local timeExpired
-
-local secondsLeft = 0
+local secondsLeft = 10
 local timeDisplay
-local countDownTimer=0
+local countDownTimer = 0
 local clockText
 
 local backgroundImage
@@ -60,8 +58,8 @@ local randomOperator
 local correctAnswer1
 local tempRandomNumber
 
-local totalSeconds = 6
-local secondsLeft = 4
+local totalSeconds = 10
+local secondsLeft = 10
 local clockText
 local countdownTimer
 
@@ -93,46 +91,52 @@ local function Updatetime()
 			heart3.isVisible = false
 			incorrectObject.isVisible = true
 			audio.play(Sound2)
-			timeExpired = display.newText( " TIME EXPIRED The Correct Answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    timeExpired:setTextColor(101/255, 14/255, 189/255 )
-		    timeExpired.isVisible = true
+			incorrectObject = display.newText( "The Correct Answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
+		    incorrectObject:setTextColor(0/255, 0/255, 0/255 )
+		    incorrectObject.isVisible = true
 		   	timer.performWithDelay(2000, Hideincorrect) 
 		 
 
 		elseif (lives == 1) then
 			heart2.isVisible = false
-			timeExpired = display.newText( " TIME EXPIRED The Correct Answer is ".. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    timeExpired:setTextColor(101/255, 14/255, 189/255 )
-		   	timeExpired.isVisible = true
+			incorrectObject = display.newText( "The Correct Answer is ".. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
+		    incorrectObject:setTextColor(0/255, 0/255, 0/255 )
+		   	incorrectObject.isVisible = true
 		   	timer.performWithDelay(2000, Hideincorrect) 
 			
 		   	
 
 		elseif (lives == 0) then
 			heart1.isVisible = false
-			timeExpired = display.newText( " TIME EXPIRED The Correct Answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    timeExpired:setTextColor(101/255, 14/255, 189/255 )
-		    timeExpired.isVisible = true
-		   	timer.performWithDelay(2000, Hideincorrect) 
-		    
+			incorrectObject = display.newText( "The Correct Answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
+		    incorrectObject:setTextColor(0/255, 0/255, 0/255 )
+		    incorrectObject.isVisible = true
+		   	timer.performWithDelay(2000, Hideincorrect)  
 		end
-	
-
- 	end
+	end
 end
+
+
+if (lives == 0) then
+	gameOver = display.newImageRect("Images/gameOver.jpg", 1304, 769)
+	gameOver.x = display.contentCenterX
+	gameOver.y = display.contentCenterY
+end
+
+
+
 
 -- function that calls the timer 
 local function StartTimer()
-	-- create countdown that loops infinitely
+	--create countdown that loops infinitely
 	countDownTimer = timer.performWithDelay( 1000, Updatetime, 0)
 end
 
 -- function that restarts the count down clock
---local function setClockStart()
-   --secondsLeft = 10
-  -- secondsLeft = 4
-  -- clockText.text = "00:10"
---end
+local function setClockStart()
+   secondsLeft = 10
+   clockText.text = "00:10"
+end
 
 
 
@@ -141,8 +145,8 @@ local function AskQuestion()
 
 	randomOperator = math.random(1, 4)
 
-	randomNumber1 = math.random(0, 10)
-	randomNumber2 = math.random(0, 10)
+	randomNumber1 = math.random(1, 10)
+	randomNumber2 = math.random(1, 10)
 
 	-- If the Random operator is 1, then do addition
 	if (randomOperator == 1) then
@@ -188,11 +192,10 @@ local function AskQuestion()
 	end
 end
 
+if (secondsLeft == 0) then
+	Hideincorrect()
+end
 
---local function HideTimeExpired()
---	timeExpired.isVisible = false
---	AskQuestion()
---end
 
 local function HideCorrect()
 	correctObject.isVisible = false
@@ -203,7 +206,6 @@ end
 local function Hideincorrect()
 	incorrectObject.isVisible = false
 	correctAnswerObject.isVisible = false
-	timeExpired.isVisible = false
 	AskQuestion()
 	secondsLeft = totalSeconds
 end
@@ -235,6 +237,7 @@ local function NumericFieldListener( event )
 		   timer.performWithDelay(2000, HideCorrect)
 		   -- give a point if user gets the correct answer
 	       points = points + 1
+	       secondsLeft = 10
            -- upadate it in the display object
 		   pointsText.text = "Points = " .. points
 		   -- clear text 
@@ -248,7 +251,7 @@ local function NumericFieldListener( event )
 			heart3.isVisible = false
 		    timer.performWithDelay(2000, Hideincorrect) 
 		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    correctAnswerObject:setTextColor(101/255, 14/255, 189/255 )
+		    correctAnswerObject:setTextColor(0/255, 0/255, 0/255 )
 		   	correctAnswerObject.isVisible = true
 		   	lives = 2
 		   
@@ -259,7 +262,7 @@ local function NumericFieldListener( event )
 			heart2.isVisible = false
 		    timer.performWithDelay(2000, Hideincorrect) 
 		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    correctAnswerObject:setTextColor(101/255, 14/255, 189/255 )
+		    correctAnswerObject:setTextColor(0/255, 0/255, 0/255 )
 		   	correctAnswerObject.isVisible = true  	
 		   	lives = 1
 		   
@@ -270,9 +273,9 @@ local function NumericFieldListener( event )
 			heart1.isVisible = false
 		    timer.performWithDelay(2000, Hideincorrect) 
 		    correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
-		    correctAnswerObject:setTextColor(101/255, 14/255, 189/255 )
+		    correctAnswerObject:setTextColor(0/255, 0/255, 0/255 )
 		   	correctAnswerObject.isVisible = true
-		   	timer.performWithDelay(3500, GameOver) 
+		   	timer.performWithDelay(2000, GameOver) 
 		end   
 
 		    -- if points reach 5 points display You Win!
@@ -311,10 +314,6 @@ end
 clockText = display.newText("00:10", 150, 80, native.systemFontBold, 80)
 clockText:setFillColor( 1, 1, 1 )
 clockText.isVisible = true
-
-timeExpired = display.newText( "TIME EXPIREDbbb The Correct Answer is ".. correctAnswer .. "!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-timeExpired:setTextColor(1, 0, 0)
-timeExpired.isVisible = false
 
 	
 
@@ -367,9 +366,6 @@ numericField:addEventListener( "userInput", NumericFieldListener )
 -- call the function to ask the question
 AskQuestion()
 StartTimer()
-
--- Update time will be called over and over again
---Runtime:addEventListener("enterFrame", Updatetime, 10)
 
 
  
