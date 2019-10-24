@@ -318,6 +318,10 @@ heart3 = display.newImageRect("Images/heart.png", 150, 150)
 heart3.x = display.contentWidth * 5/8
 heart3.y = display.contentHeight * 1/7
 
+correctAnswerObject = display.newText( " The correct answer is " .. correctAnswer .. "!", 512, 680, native.systemFontBold, 50)
+correctAnswerObject:setTextColor(101/255, 14/255, 189/255 )
+correctAnswerObject.isVisible = false
+
 ------------------------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
 ------------------------------------------------------------------------------------------------------------
